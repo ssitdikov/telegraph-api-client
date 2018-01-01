@@ -1,6 +1,6 @@
 {
     "name": "ssitdikov/telegraph-api-client",
-    "description": "Simple Telegraph.io API PHP Client",
+    "description": "Simple Telegra.ph API PHP Client",
     "keywords": ["telegram", "telegraph", "api", "online", "php"],
     "minimum-stability": "stable",
     "license": "MIT",

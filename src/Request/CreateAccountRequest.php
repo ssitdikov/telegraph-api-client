@@ -42,7 +42,6 @@ class CreateAccountRequest extends AbstractAccountRequest
             switch ($json->error) {
                 case ('SHORT_NAME_REQUIRED'):
                     throw new ShortNameRequiredException();
-                    break;
             }
             throw new \Exception($json->error);
         }

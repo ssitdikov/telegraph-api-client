@@ -28,11 +28,6 @@ class TelegraphClient extends AbstractClient
         $this->client = $client;
     }
 
-    public function createAccount(CreateAccountRequest $createAccountRequest): Account
-    {
-        return $this->doRequest($createAccountRequest);
-    }
-
     private function doRequest(RequestInterface $request)
     {
         $response = $this->client->request(
@@ -41,6 +36,11 @@ class TelegraphClient extends AbstractClient
             $request->getParams()
         );
         return $request->handleResponse($response);
+    }
+
+    public function createAccount(CreateAccountRequest $createAccountRequest): Account
+    {
+        return $this->doRequest($createAccountRequest);
     }
 
     public function editAccountInfo(EditAccountInfoRequest $editAccountRequest): Account

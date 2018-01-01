@@ -1,7 +1,4 @@
 <?php
-/**
- * User: Salavat Sitdikov
- */
 
 namespace SSitdikov\TelegraphAPI\Type\ContentType;
 

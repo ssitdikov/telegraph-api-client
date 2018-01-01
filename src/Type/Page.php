@@ -1,10 +1,6 @@
 <?php
-/**
- * User: Salavat Sitdikov
- */
 
 namespace SSitdikov\TelegraphAPI\Type;
-
 
 class Page
 {

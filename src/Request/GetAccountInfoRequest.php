@@ -1,10 +1,6 @@
 <?php
-/**
- * User: Salavat Sitdikov
- */
 
 namespace SSitdikov\TelegraphAPI\Request;
-
 
 use Psr\Http\Message\ResponseInterface;
 use SSitdikov\TelegraphAPI\Type\Account;

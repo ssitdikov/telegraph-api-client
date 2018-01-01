@@ -1,7 +1,4 @@
 <?php
-/**
- * User: Salavat Sitdikov
- */
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -21,7 +18,9 @@ class GetPageListRequest implements RequestInterface
     {
         $this->account = $account;
         $this->offset = $offset;
-        if ($limit > 200 || $limit < 0) $limit = 50;
+        if ($limit > 200 || $limit < 0) {
+            $limit = 50;
+        }
         $this->limit = $limit;
     }
 

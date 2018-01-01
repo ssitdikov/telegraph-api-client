@@ -55,14 +55,16 @@ class CreatePageRequest extends AbstractPageRequest
             }
         }
         $this->page->setTitle($json->result->title);
-        if ($this->returnContent) {
-            $this->page->setContent($json->result->content);
-        }
         $this->page->setPath($json->result->path);
         $this->page->setUrl($json->result->url);
         $this->page->setDescription($json->result->description);
         $this->page->setViews($json->result->views);
-        $this->page->setCanEdit($json->result->can_edit);
+        if (isset($json->result->can_edit)) {
+            $this->page->setCanEdit($json->result->can_edit);
+        }
+        if ($this->returnContent) {
+            $this->page->setContent($json->result->content);
+        }
         return $this->page;
     }
 

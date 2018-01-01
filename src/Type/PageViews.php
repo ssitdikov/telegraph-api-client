@@ -5,6 +5,29 @@ namespace SSitdikov\TelegraphAPI\Type;
 class PageViews
 {
 
-    private $views = 0;
+    /**
+     * @var int
+     */
+    private $views;
 
+    public function __construct(int $views)
+    {
+        $this->views = $views;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViews(): int
+    {
+        return $this->views;
+    }
+
+    /**
+     * @param int $views
+     */
+    public function setViews(int $views)
+    {
+        $this->views = $views;
+    }
 }

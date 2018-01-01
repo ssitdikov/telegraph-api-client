@@ -8,11 +8,15 @@ use SSitdikov\TelegraphAPI\Request\CreatePageRequest;
 use SSitdikov\TelegraphAPI\Request\EditAccountInfoRequest;
 use SSitdikov\TelegraphAPI\Request\EditPageRequest;
 use SSitdikov\TelegraphAPI\Request\GetAccountInfoRequest;
+use SSitdikov\TelegraphAPI\Request\GetPageListRequest;
 use SSitdikov\TelegraphAPI\Request\GetPageRequest;
+use SSitdikov\TelegraphAPI\Request\GetViewsRequest;
 use SSitdikov\TelegraphAPI\Request\RequestInterface;
 use SSitdikov\TelegraphAPI\Request\RevokeAccessTokenRequest;
 use SSitdikov\TelegraphAPI\Type\Account;
 use SSitdikov\TelegraphAPI\Type\Page;
+use SSitdikov\TelegraphAPI\Type\PageList;
+use SSitdikov\TelegraphAPI\Type\PageViews;
 
 class TelegraphClient extends AbstractClient
 {
@@ -67,5 +71,15 @@ class TelegraphClient extends AbstractClient
     public function editPage(EditPageRequest $editPageRequest): Page
     {
         return $this->doRequest($editPageRequest);
+    }
+
+    public function getPageList(GetPageListRequest $getPageListRequest): PageList
+    {
+        return $this->doRequest($getPageListRequest);
+    }
+
+    public function getViews(GetViewsRequest $getViewsRequest): PageViews
+    {
+        return $this->doRequest($getViewsRequest);
     }
 }

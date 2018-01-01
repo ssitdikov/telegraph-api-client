@@ -26,8 +26,7 @@ catch (\Exception $e) {
 ```
 
 ### Создание страницы
-```
-...
+```php
 $page = new Page();
 $page->setTitle('Test article');
 $page->setAuthorName( $account->getAuthorName() );

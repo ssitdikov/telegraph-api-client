@@ -57,6 +57,7 @@ class GetAccountInfoRequest extends AbstractAccountRequest
         if (in_array('page_count', $this->fields)) {
             $account->setPageCount($json->result->page_count);
         }
+        $account->setAccessToken($this->account->getAccessToken());
         return $account;
     }
 

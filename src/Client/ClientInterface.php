@@ -13,21 +13,21 @@ use SSitdikov\TelegraphAPI\Type\PageViews;
 interface ClientInterface
 {
 
-    public function createAccount(CreateAccountRequest $createAccountRequest): Account;
+    public function createAccount(CreateAccountRequest $request): Account;
 
-    public function editAccountInfo(EditAccountInfoRequest $editAccountInfoRequest): Account;
+    public function editAccountInfo(EditAccountInfoRequest $request): Account;
 
-    public function getAccountInfo(GetAccountInfoRequest $getAccountInfoRequest): Account;
+    public function getAccountInfo(GetAccountInfoRequest $request): Account;
 
-    public function revokeAccessToken(RevokeAccessTokenRequest $revokeAccessTokenRequest): Account;
+    public function revokeAccessToken(RevokeAccessTokenRequest $request): Account;
 
-    public function createPage(CreatePageRequest $createPageRequest): Page;
+    public function createPage(CreatePageRequest $request): Page;
 
-    public function getPage(GetPageRequest $getPageRequest): Page;
+    public function getPage(GetPageRequest $request): Page;
 
-    public function editPage(EditPageRequest $editPageRequest): Page;
+    public function editPage(EditPageRequest $request): Page;
 
-    public function getPageList(GetPageListRequest $getPageListRequest): PageList;
+    public function getPageList(GetPageListRequest $request): PageList;
 
-    public function getViews(GetViewsRequest $getViewsRequest): PageViews;
+    public function getViews(GetViewsRequest $request): PageViews;
 }

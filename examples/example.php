@@ -41,7 +41,6 @@ try {
     $page = $telegraph->createPage(
         new CreatePageRequest($page, $account)
     );
-    print $page->getUrl();
 
 } catch (\Exception $e) {
     // logger

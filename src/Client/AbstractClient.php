@@ -12,22 +12,22 @@ use SSitdikov\TelegraphAPI\Type\PageViews;
 
 abstract class AbstractClient implements ClientInterface
 {
-    abstract public function createAccount(CreateAccountRequest $createAccountRequest): Account;
+    abstract public function createAccount(CreateAccountRequest $request): Account;
 
-    abstract public function editAccountInfo(EditAccountInfoRequest $editAccountInfoRequest): Account;
+    abstract public function editAccountInfo(EditAccountInfoRequest $request): Account;
 
-    abstract public function getAccountInfo(GetAccountInfoRequest $getAccountInfoRequest): Account;
+    abstract public function getAccountInfo(GetAccountInfoRequest $request): Account;
 
-    abstract public function revokeAccessToken(RevokeAccessTokenRequest $revokeAccessTokenRequest): Account;
+    abstract public function revokeAccessToken(RevokeAccessTokenRequest $request): Account;
 
-    abstract public function createPage(CreatePageRequest $createPageRequest): Page;
+    abstract public function createPage(CreatePageRequest $request): Page;
 
-    abstract public function getPage(GetPageRequest $getPageRequest): Page;
+    abstract public function getPage(GetPageRequest $request): Page;
 
-    abstract public function editPage(EditPageRequest $editPageRequest): Page;
+    abstract public function editPage(EditPageRequest $request): Page;
 
-    abstract public function getPageList(GetPageListRequest $getPageListRequest): PageList;
+    abstract public function getPageList(GetPageListRequest $request): PageList;
 
-    abstract public function getViews(GetViewsRequest $getViewsRequest): PageViews;
+    abstract public function getViews(GetViewsRequest $request): PageViews;
 
 }

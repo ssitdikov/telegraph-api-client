@@ -38,48 +38,48 @@ class TelegraphClient extends AbstractClient
         return $request->handleResponse($response);
     }
 
-    public function createAccount(CreateAccountRequest $createAccountRequest): Account
+    public function createAccount(CreateAccountRequest $request): Account
     {
-        return $this->doRequest($createAccountRequest);
+        return $this->doRequest($request);
     }
 
-    public function editAccountInfo(EditAccountInfoRequest $editAccountRequest): Account
+    public function editAccountInfo(EditAccountInfoRequest $request): Account
     {
-        return $this->doRequest($editAccountRequest);
+        return $this->doRequest($request);
     }
 
-    public function getAccountInfo(GetAccountInfoRequest $getAccountInfoRequest): Account
+    public function getAccountInfo(GetAccountInfoRequest $request): Account
     {
-        return $this->doRequest($getAccountInfoRequest);
+        return $this->doRequest($request);
     }
 
-    public function revokeAccessToken(RevokeAccessTokenRequest $revokeAccessTokenRequest): Account
+    public function revokeAccessToken(RevokeAccessTokenRequest $request): Account
     {
-        return $this->doRequest($revokeAccessTokenRequest);
+        return $this->doRequest($request);
     }
 
-    public function createPage(CreatePageRequest $createPageRequest): Page
+    public function createPage(CreatePageRequest $request): Page
     {
-        return $this->doRequest($createPageRequest);
+        return $this->doRequest($request);
     }
 
-    public function getPage(GetPageRequest $getPageRequest): Page
+    public function getPage(GetPageRequest $request): Page
     {
-        return $this->doRequest($getPageRequest);
+        return $this->doRequest($request);
     }
 
-    public function editPage(EditPageRequest $editPageRequest): Page
+    public function editPage(EditPageRequest $request): Page
     {
-        return $this->doRequest($editPageRequest);
+        return $this->doRequest($request);
     }
 
-    public function getPageList(GetPageListRequest $getPageListRequest): PageList
+    public function getPageList(GetPageListRequest $request): PageList
     {
-        return $this->doRequest($getPageListRequest);
+        return $this->doRequest($request);
     }
 
-    public function getViews(GetViewsRequest $getViewsRequest): PageViews
+    public function getViews(GetViewsRequest $request): PageViews
     {
-        return $this->doRequest($getViewsRequest);
+        return $this->doRequest($request);
     }
 }

@@ -23,8 +23,11 @@ class TelegraphClient extends AbstractClient
 
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct(Client $client = null)
     {
+        if (null === $client) {
+            $client = new Client(['base_uri' => 'https://api.telegra.ph/']);
+        }
         $this->client = $client;
     }
 

@@ -5,11 +5,10 @@
 
 namespace SSitdikov\TelegraphAPI\Tests\Page;
 
-use SSitdikov\TelegraphAPI\Request\CreatePageRequest;
 use PHPUnit\Framework\TestCase;
+use SSitdikov\TelegraphAPI\Request\CreatePageRequest;
 use SSitdikov\TelegraphAPI\Request\RequestInterface;
 use SSitdikov\TelegraphAPI\Type\Account;
-use SSitdikov\TelegraphAPI\Type\ContentType\LinkType;
 use SSitdikov\TelegraphAPI\Type\Page;
 
 class CreatePageRequestTest extends TestCase
@@ -43,7 +42,7 @@ class CreatePageRequestTest extends TestCase
                 'content' => $content,
             ]
         ];
-        $this->assertEquals( $expectedParams, $request->getParams());
+        $this->assertEquals($expectedParams, $request->getParams());
         $authorUrl = md5(random_bytes(16));
         $authorName = md5(random_bytes(16));
 

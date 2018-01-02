@@ -2,8 +2,8 @@
 
 namespace SSitdikov\TelegraphAPI\Tests\Account;
 
-use SSitdikov\TelegraphAPI\Request\GetAccountInfoRequest;
 use PHPUnit\Framework\TestCase;
+use SSitdikov\TelegraphAPI\Request\GetAccountInfoRequest;
 use SSitdikov\TelegraphAPI\Request\RequestInterface;
 use SSitdikov\TelegraphAPI\Type\Account;
 
@@ -27,7 +27,11 @@ class GetPageRequestTest extends TestCase
             'json' => [
                 'access_token' => $accessToken,
                 'fields' => [
-                    'short_name', 'author_name', 'author_url', 'auth_url', 'page_count'
+                    'short_name',
+                    'author_name',
+                    'author_url',
+                    'auth_url',
+                    'page_count'
                 ]
             ]
         ];

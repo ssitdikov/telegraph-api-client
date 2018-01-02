@@ -1,11 +1,18 @@
 <?php
 
 use SSitdikov\TelegraphAPI\Client\TelegraphClient;
-
-use SSitdikov\TelegraphAPI\Type\{Account, Page, PageList, PageViews};
-use SSitdikov\TelegraphAPI\Type\ContentType\{LinkType, ImageType, YoutubeType};
-use SSitdikov\TelegraphAPI\Request\{CreateAccountRequest, EditAccountInfoRequest, GetAccountInfoRequest, RevokeAccessTokenRequest};
-use SSitdikov\TelegraphAPI\Request\{CreatePageRequest, EditPageRequest, GetPageRequest, GetPageListRequest, GetViewsRequest};
+use SSitdikov\TelegraphAPI\Request\{
+    CreateAccountRequest, EditAccountInfoRequest
+};
+use SSitdikov\TelegraphAPI\Request\{
+    CreatePageRequest
+};
+use SSitdikov\TelegraphAPI\Type\{
+    Account, Page
+};
+use SSitdikov\TelegraphAPI\Type\ContentType\{
+    ImageType, LinkType
+};
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -27,7 +34,7 @@ try {
 
     $page = new Page();
     $page->setTitle('Test article');
-    $page->setAuthorName( $account->getAuthorName() );
+    $page->setAuthorName($account->getAuthorName());
 
     $link = new LinkType();
     $link->setHref('https://github.com/ssitdikov');
@@ -41,7 +48,6 @@ try {
     $page = $telegraph->createPage(
         new CreatePageRequest($page, $account)
     );
-
 } catch (\Exception $e) {
     // logger
 }

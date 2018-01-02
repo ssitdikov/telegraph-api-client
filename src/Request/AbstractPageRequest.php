@@ -24,6 +24,11 @@ abstract class AbstractPageRequest implements RequestInterface
         $this->returnContent = $returnContent;
     }
 
+    public function getReturnContent()
+    {
+        return $this->returnContent;
+    }
+
     public function getMethod(): string
     {
         return self::POST;

@@ -46,7 +46,6 @@ class CreatePageRequest extends AbstractPageRequest
             switch ($json->error) {
                 case ('CONTENT_TEXT_REQUIRED'):
                     throw new ContentTextRequired();
-                    break;
                 default:
                     throw new \Exception($json->error);
             }

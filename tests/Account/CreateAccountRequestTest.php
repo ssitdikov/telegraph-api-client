@@ -2,8 +2,8 @@
 
 namespace SSitdikov\TelegraphAPI\Tests\Account;
 
-use SSitdikov\TelegraphAPI\Request\CreateAccountRequest;
 use PHPUnit\Framework\TestCase;
+use SSitdikov\TelegraphAPI\Request\CreateAccountRequest;
 use SSitdikov\TelegraphAPI\Request\RequestInterface;
 use SSitdikov\TelegraphAPI\Type\Account;
 

@@ -12,7 +12,7 @@ class PageViews
 
     public function __construct(int $views)
     {
-        $this->views = $views;
+        $this->setViews($views);
     }
 
     /**

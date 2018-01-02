@@ -12,7 +12,12 @@ use SSitdikov\TelegraphAPI\Exception\ShortNameRequiredException;
 use SSitdikov\TelegraphAPI\Request\CreateAccountRequest;
 use SSitdikov\TelegraphAPI\Request\CreatePageRequest;
 use SSitdikov\TelegraphAPI\Request\EditAccountInfoRequest;
+use SSitdikov\TelegraphAPI\Request\EditPageRequest;
 use SSitdikov\TelegraphAPI\Request\GetAccountInfoRequest;
+use SSitdikov\TelegraphAPI\Request\GetPageListRequest;
+use SSitdikov\TelegraphAPI\Request\GetPageRequest;
+use SSitdikov\TelegraphAPI\Request\GetViewsRequest;
+use SSitdikov\TelegraphAPI\Request\RequestObject\ViewsRequestObject;
 use SSitdikov\TelegraphAPI\Request\RevokeAccessTokenRequest;
 use SSitdikov\TelegraphAPI\Type\Account;
 use SSitdikov\TelegraphAPI\Type\Page;
@@ -329,7 +334,47 @@ class TelegraphClientTest extends TestCase
         if ($returnContent) {
             $this->assertJson(json_encode($content), json_encode($page->getContent()));
         }
+    }
 
+    /**
+     * @test
+     */
+    public function createPageWithContent()
+    {
+        $title = md5(random_bytes(16));
+        $path = md5(random_bytes(16));
+        $url = md5(random_bytes(16));
+        $description = md5(random_bytes(16));
+        $views = random_int(1, 999);
+        $canEdit = rand(0, 1) === 1 ? true : false;
+        $imageUrl = md5(random_bytes(16));
+        $content = [
+            ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']]
+        ];
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+                'title' => $title,
+                'path' => $path,
+                'url' => $url,
+                'description' => $description,
+                'views' => $views,
+                'can_edit' => $canEdit,
+                'content' => $content,
+                'image_url' => $imageUrl,
+            ]
+        ];
+
+        $request = new CreatePageRequest($this->page, $this->account);
+        $request->isReturnContent();
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $page = $telegraph->createPage(
+            $request
+        );
+
+        $this->assertJson(json_encode($content), json_encode($page->getContent()));
     }
 
     /**
@@ -369,6 +414,370 @@ class TelegraphClientTest extends TestCase
         $this->expectException(\Exception::class);
         $telegraph->createPage(
             new CreatePageRequest($this->page, $this->account)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getPage()
+    {
+        $title = md5(random_bytes(16));
+        $path = md5(random_bytes(16));
+        $url = md5(random_bytes(16));
+        $description = md5(random_bytes(16));
+        $views = random_int(1, 999);
+        $canEdit = rand(0, 1) === 1 ? true : false;
+        $imageUrl = md5(random_bytes(16));
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+                'title' => $title,
+                'path' => $path,
+                'url' => $url,
+                'description' => $description,
+                'views' => $views,
+                'can_edit' => $canEdit,
+                'image_url' => $imageUrl,
+            ]
+        ];
+
+        $request = new GetPageRequest($this->page, $this->account);
+
+        $returnContent = rand(0, 1) === 1 ? true : false;
+
+        if ($returnContent) {
+            $content = [
+                ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']]
+            ];
+            $responseContent['result']['content'] = $content;
+            $request->isReturnContent();
+        }
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $page = $telegraph->getPage(
+            $request
+        );
+
+        $this->assertEquals($title, $page->getTitle());
+        $this->assertEquals($path, $page->getPath());
+        $this->assertEquals($url, $page->getUrl());
+        $this->assertEquals($description, $page->getDescription());
+        $this->assertEquals($views, $page->getViews());
+        $this->assertEquals($canEdit, $page->isCanEdit());
+        $this->assertEquals($imageUrl, $page->getImageUrl());
+        $this->assertEquals($returnContent, $request->getReturnContent());
+        if ($returnContent) {
+            $this->assertJson(json_encode($content), json_encode($page->getContent()));
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function getPageWithContent()
+    {
+        $title = md5(random_bytes(16));
+        $path = md5(random_bytes(16));
+        $url = md5(random_bytes(16));
+        $description = md5(random_bytes(16));
+        $views = random_int(1, 999);
+        $canEdit = rand(0, 1) === 1 ? true : false;
+        $imageUrl = md5(random_bytes(16));
+        $content = [
+            ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']]
+        ];
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+                'title' => $title,
+                'path' => $path,
+                'url' => $url,
+                'description' => $description,
+                'views' => $views,
+                'can_edit' => $canEdit,
+                'content' => $content,
+                'image_url' => $imageUrl,
+            ]
+        ];
+
+        $request = new GetPageRequest($this->page, $this->account);
+        $request->isReturnContent();
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $page = $telegraph->getPage(
+            $request
+        );
+
+        $this->assertJson(json_encode($content), json_encode($page->getContent()));
+    }
+
+    /**
+     * @test
+     * @depends getPage
+     */
+    public function getPageError()
+    {
+        $errorString = md5(random_bytes(16));
+        $responseContent = [
+            'ok' => false,
+            'error' => $errorString
+        ];
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $this->expectException(\Exception::class);
+        $telegraph->getPage(
+            new GetPageRequest($this->page, $this->account)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function editPage()
+    {
+        $title = md5(random_bytes(16));
+        $path = md5(random_bytes(16));
+        $url = md5(random_bytes(16));
+        $description = md5(random_bytes(16));
+        $views = random_int(1, 999);
+        $canEdit = rand(0, 1) === 1 ? true : false;
+        $imageUrl = md5(random_bytes(16));
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+                'title' => $title,
+                'path' => $path,
+                'url' => $url,
+                'description' => $description,
+                'views' => $views,
+                'can_edit' => $canEdit,
+                'image_url' => $imageUrl,
+            ]
+        ];
+
+        $request = new EditPageRequest($this->page, $this->account);
+
+        $returnContent = rand(0, 1) === 1 ? true : false;
+
+        if ($returnContent) {
+            $content = [
+                ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']]
+            ];
+            $responseContent['result']['content'] = $content;
+            $request->isReturnContent();
+        }
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $page = $telegraph->editPage(
+            $request
+        );
+
+        $this->assertEquals($title, $page->getTitle());
+        $this->assertEquals($path, $page->getPath());
+        $this->assertEquals($url, $page->getUrl());
+        $this->assertEquals($description, $page->getDescription());
+        $this->assertEquals($views, $page->getViews());
+        $this->assertEquals($canEdit, $page->isCanEdit());
+        $this->assertEquals($imageUrl, $page->getImageUrl());
+        $this->assertEquals($returnContent, $request->getReturnContent());
+        if ($returnContent) {
+            $this->assertJson(json_encode($content), json_encode($page->getContent()));
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function editPageWithContent()
+    {
+        $title = md5(random_bytes(16));
+        $path = md5(random_bytes(16));
+        $url = md5(random_bytes(16));
+        $description = md5(random_bytes(16));
+        $views = random_int(1, 999);
+        $canEdit = rand(0, 1) === 1 ? true : false;
+        $imageUrl = md5(random_bytes(16));
+        $content = [
+            ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']]
+        ];
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+                'title' => $title,
+                'path' => $path,
+                'url' => $url,
+                'description' => $description,
+                'views' => $views,
+                'can_edit' => $canEdit,
+                'content' => $content,
+                'image_url' => $imageUrl,
+            ]
+        ];
+
+        $authorName = md5(random_bytes(16));
+        $authorUrl = md5(random_bytes(16));
+        $this->page->setAuthorName($authorName);
+        $this->page->setAuthorUrl($authorUrl);
+        $request = new EditPageRequest($this->page, $this->account);
+        $request->isReturnContent();
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $page = $telegraph->editPage(
+            $request
+        );
+
+        $this->assertJson(json_encode($content), json_encode($page->getContent()));
+    }
+
+    /**
+     * @test
+     */
+    public function editPageError()
+    {
+        $errorString = md5(random_bytes(16));
+        $responseContent = [
+            'ok' => false,
+            'error' => $errorString
+        ];
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $this->expectException(\Exception::class);
+        $telegraph->editPage(
+            new EditPageRequest($this->page, $this->account)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getPageList()
+    {
+        $totalCount = random_int(1, 999);
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+            'pages' => [],
+            'total_count' => $totalCount
+                ]
+        ];
+
+        $telegraph = $this->getTelegraph($responseContent);
+        $offset = random_int(1, 99);
+        $limit = random_int(1, 99);
+        $request = new GetPageListRequest($this->account, $offset, $limit);
+        $pageList = $telegraph->getPageList(
+            $request
+        );
+
+        $this->assertEquals([
+            'json' => [
+                'access_token' => $this->account->getAccessToken(),
+                'limit' => $limit,
+                'offset' => $offset,
+            ]
+        ], $request->getParams());
+
+        $this->assertEquals($totalCount, $pageList->getTotalCount());
+        /**
+         * @todo Check pages result
+         */
+        $this->assertEquals([], $pageList->getPages());
+
+        $request = new GetPageListRequest($this->account, 0, 250);
+        $this->assertEquals([
+            'json' => [
+                'access_token' => $this->account->getAccessToken(),
+                'limit' => 50,
+                'offset' => 0,
+            ]
+        ], $request->getParams());
+    }
+
+    /**
+     * @test
+     */
+    public function getPageListError()
+    {
+        $errorString = md5(random_bytes(16));
+        $responseContent = [
+            'ok' => false,
+            'error' => $errorString
+        ];
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $this->expectException(\Exception::class);
+        $telegraph->getPageList(
+            new GetPageListRequest($this->account, 0, 0)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getPageViews()
+    {
+        $views = random_int(1, 99);
+        $responseContent = [
+            'ok' => true,
+            'result' => [
+                'views' => $views,
+            ]
+        ];
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $requestObject = new ViewsRequestObject();
+        $path = md5(random_bytes(16));
+        $year = random_int(2000,2017);
+        $month = random_int(1, 12);
+        $day = random_int(1, 30);
+        $hour = random_int(0, 24);
+        $requestObject->setPath($path);
+        $requestObject->setYear($year);
+        $requestObject->setMonth($month);
+        $requestObject->setDay($day);
+        $requestObject->setHour($hour);
+
+        $request = new GetViewsRequest($requestObject);
+        $this->assertEquals([
+            'json' => [
+                'year' => $year,
+                'month' => $month,
+                'day' => $day,
+                'hour' => $hour
+            ]
+        ], $request->getParams());
+
+        $viewPage = $telegraph->getViews($request);
+        $this->assertEquals($views, $viewPage->getViews());
+    }
+
+    /**
+     * @test
+     */
+    public function getViewsError()
+    {
+        $errorString = md5(random_bytes(16));
+        $responseContent = [
+            'ok' => false,
+            'error' => $errorString
+        ];
+
+        $telegraph = $this->getTelegraph($responseContent);
+
+        $this->expectException(\Exception::class);
+        $telegraph->getViews(
+            new GetViewsRequest(
+                new ViewsRequestObject()
+            )
         );
     }
 

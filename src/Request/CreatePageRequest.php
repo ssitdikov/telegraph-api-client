@@ -58,7 +58,7 @@ class CreatePageRequest extends AbstractPageRequest
         if (isset($json->result->can_edit)) {
             $this->page->setCanEdit($json->result->can_edit);
         }
-        if ($this->returnContent) {
+        if ($this->getReturnContent()) {
             $this->page->setContent($json->result->content);
         }
         return $this->page;

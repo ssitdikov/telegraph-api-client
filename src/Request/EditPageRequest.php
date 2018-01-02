@@ -45,7 +45,10 @@ class EditPageRequest extends AbstractPageRequest
         if (isset($json->result->can_edit)) {
             $this->page->setCanEdit($json->result->can_edit);
         }
-        if ($this->returnContent) {
+        if (isset($json->result->image_url)) {
+            $this->page->setImageUrl($json->result->image_url);
+        }
+        if ($this->getReturnContent()) {
             $this->page->setContent($json->result->content);
         }
         return $this->page;

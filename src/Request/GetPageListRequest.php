@@ -14,6 +14,13 @@ class GetPageListRequest implements RequestInterface
     private $offset;
     private $limit;
 
+    /**
+     * GetPageListRequest constructor.
+     * @param Account $account
+     * @param int $offset
+     * @param int $limit
+     * @todo add additional checks for limits
+     */
     public function __construct(Account $account, $offset = 0, $limit = 50)
     {
         $this->account = $account;

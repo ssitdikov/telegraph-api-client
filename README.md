@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/ssitdikov/telegraph-api-client.svg?branch=master)](https://travis-ci.org/ssitdikov/telegraph-api-client)
+[![Coverage Status](https://coveralls.io/repos/github/ssitdikov/telegraph-api-client/badge.svg?branch=master)](https://coveralls.io/github/ssitdikov/telegraph-api-client?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/38edcd896a7a47a3ba790cdf4167b7bc)](https://www.codacy.com/app/sitsalavat/telegraph-api-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ssitdikov/telegraph-api-client&amp;utm_campaign=Badge_Grade)
+
 # Telegra.ph API PHP Client 
 ## О продукте
 Данная библиотека предназначена для работы с сервисом [Telegra.ph](https://telegra.ph).

@@ -31,6 +31,11 @@ class TelegraphClient extends AbstractClient
         $this->client = $client;
     }
 
+    public function getClient()
+    {
+        return $this->client;
+    }
+
     public function createAccount(CreateAccountRequest $request): Account
     {
         return $this->doRequest($request);

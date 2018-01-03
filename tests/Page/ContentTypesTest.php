@@ -5,6 +5,7 @@ namespace SSitdikov\TelegraphAPI\Tests\Page;
 use PHPUnit\Framework\TestCase;
 use SSitdikov\TelegraphAPI\Type\ContentType\ImageType;
 use SSitdikov\TelegraphAPI\Type\ContentType\LinkType;
+use SSitdikov\TelegraphAPI\Type\ContentType\NodeElementType;
 use SSitdikov\TelegraphAPI\Type\ContentType\ParagraphType;
 use SSitdikov\TelegraphAPI\Type\ContentType\YoutubeType;
 
@@ -129,5 +130,24 @@ class ContentTypesTest extends TestCase
             ]),
             json_encode($youtube)
         );
+    }
+
+    /**
+     * @test
+     */
+    public function nodeElementType()
+    {
+        $node = new NodeElementType();
+        $node->setTag('em');
+        $node->setChildren(['test']);
+        $node->addChildren('rest');
+
+        $this->assertJson(json_encode([
+            'tag' => 'em',
+            'children' => [
+                'test', 'rest'
+            ]
+        ]),
+            json_encode($node));
     }
 }

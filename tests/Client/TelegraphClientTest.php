@@ -3,6 +3,10 @@
 namespace SSitdikov\TelegraphAPI\Tests\Client;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -779,6 +783,15 @@ class TelegraphClientTest extends TestCase
                 new ViewsRequestObject()
             )
         );
+    }
+
+    /**
+     * @test
+     */
+    public function getClient()
+    {
+        $telegraph = new TelegraphClient();
+        $this->assertEquals(Client::class, get_class($telegraph->getClient()));
     }
 
 }

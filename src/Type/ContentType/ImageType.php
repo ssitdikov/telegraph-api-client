@@ -57,7 +57,7 @@ class ImageType extends AbstractNodeElementType
         $this->attrs = [];
 
         $children = [
-            $imageDiv
+            $imageDiv,
         ];
 
         if ($this->caption) {
@@ -74,6 +74,4 @@ class ImageType extends AbstractNodeElementType
 
         return parent::jsonSerialize();
     }
-
-
 }

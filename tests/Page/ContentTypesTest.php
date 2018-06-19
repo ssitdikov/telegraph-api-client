@@ -41,8 +41,6 @@ class ContentTypesTest extends TestCase
                 'src' => 'https://github.com/logo.png',
             ],
         ]), json_encode($image));
-
-
     }
 
     /**

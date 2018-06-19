@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Exception;
 
@@ -10,5 +10,4 @@ class ShortNameRequiredException extends \Exception
     {
         parent::__construct($message, $code, $previous);
     }
-
 }

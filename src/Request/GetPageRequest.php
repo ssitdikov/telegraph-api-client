@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -7,16 +7,15 @@ use SSitdikov\TelegraphAPI\Type\Page;
 
 class GetPageRequest extends AbstractPageRequest
 {
-
     public function getUrlRequest(): string
     {
-        return 'getPage/' . $this->page->getPath();
+        return 'getPage/'.$this->page->getPath();
     }
 
     public function getParams(): array
     {
         $params = [
-            'return_content' => $this->returnContent
+            'return_content' => $this->returnContent,
         ];
         return ['json' => $params];
     }
@@ -43,5 +42,4 @@ class GetPageRequest extends AbstractPageRequest
         }
         return $this->page;
     }
-
 }

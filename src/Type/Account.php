@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Type;
 
 class Account
 {
-
     /**
      * @var string
      * @desc Length 1-32
@@ -119,5 +118,4 @@ class Account
     {
         $this->pageCount = $pageCount;
     }
-
 }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -8,7 +8,6 @@ use SSitdikov\TelegraphAPI\Type\Page;
 
 abstract class AbstractPageRequest implements RequestInterface
 {
-
     protected $page;
     protected $account;
     protected $returnContent = false;
@@ -39,5 +38,4 @@ abstract class AbstractPageRequest implements RequestInterface
     abstract public function getParams(): array;
 
     abstract public function handleResponse(ResponseInterface $response);
-
 }

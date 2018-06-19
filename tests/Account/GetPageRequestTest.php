@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Tests\Account;
 
@@ -9,7 +9,6 @@ use SSitdikov\TelegraphAPI\Type\Account;
 
 class GetPageRequestTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -31,11 +30,10 @@ class GetPageRequestTest extends TestCase
                     'author_name',
                     'author_url',
                     'auth_url',
-                    'page_count'
-                ]
-            ]
+                    'page_count',
+                ],
+            ],
         ];
         $this->assertEquals($expectedParams, $request->getParams());
     }
-
 }

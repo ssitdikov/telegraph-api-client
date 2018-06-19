@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Client;
 
@@ -20,7 +20,6 @@ use SSitdikov\TelegraphAPI\Type\PageViews;
 
 class TelegraphClient extends AbstractClient
 {
-
     private $client;
 
     public function __construct(Client $client = null)

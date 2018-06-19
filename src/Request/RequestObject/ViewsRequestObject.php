@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request\RequestObject;
 
 class ViewsRequestObject
 {
-
     private $path;
     private $year;
     private $month;
@@ -90,5 +89,4 @@ class ViewsRequestObject
     {
         $this->hour = $hour;
     }
-
 }

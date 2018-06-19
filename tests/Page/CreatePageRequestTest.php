@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * User: Salavat Sitdikov
  */
@@ -13,7 +13,6 @@ use SSitdikov\TelegraphAPI\Type\Page;
 
 class CreatePageRequestTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -40,7 +39,7 @@ class CreatePageRequestTest extends TestCase
                 'access_token' => $accessToken,
                 'title' => $title,
                 'content' => $content,
-            ]
+            ],
         ];
         $this->assertEquals($expectedParams, $request->getParams());
         $authorUrl = md5(random_bytes(16));
@@ -59,11 +58,10 @@ class CreatePageRequestTest extends TestCase
                 'content' => $content,
                 'author_name' => $authorName,
                 'author_url' => $authorUrl,
-                'return_content' => true
-            ]
+                'return_content' => true,
+            ],
         ];
 
         $this->assertEquals($expectedParams, $request->getParams());
     }
-
 }

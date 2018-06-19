@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -24,5 +24,4 @@ abstract class AbstractAccountRequest implements RequestInterface
     abstract public function getParams(): array;
 
     abstract public function handleResponse(ResponseInterface $response): Account;
-
 }

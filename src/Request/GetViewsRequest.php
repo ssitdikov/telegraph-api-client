@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -8,7 +8,6 @@ use SSitdikov\TelegraphAPI\Type\PageViews;
 
 class GetViewsRequest implements RequestInterface
 {
-
     private $viewsRequest;
 
     public function __construct(ViewsRequestObject $requestObject)
@@ -23,7 +22,7 @@ class GetViewsRequest implements RequestInterface
 
     public function getUrlRequest(): string
     {
-        return 'getViews/' . $this->viewsRequest->getPath();
+        return 'getViews/'.$this->viewsRequest->getPath();
     }
 
     public function getParams(): array
@@ -53,5 +52,4 @@ class GetViewsRequest implements RequestInterface
 
         return new PageViews($json->result->views);
     }
-
 }

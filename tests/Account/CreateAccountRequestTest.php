@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Tests\Account;
 
@@ -9,7 +9,6 @@ use SSitdikov\TelegraphAPI\Type\Account;
 
 class CreateAccountRequestTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -31,10 +30,8 @@ class CreateAccountRequestTest extends TestCase
                 'short_name' => $shortName,
                 'author_name' => $authorName,
                 'author_url' => $authorUrl,
-            ]
+            ],
         ];
         $this->assertEquals($expectedParams, $request->getParams());
     }
-
-
 }

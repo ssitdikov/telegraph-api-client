@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -7,7 +7,6 @@ use SSitdikov\TelegraphAPI\Type\Account;
 
 class RevokeAccessTokenRequest extends AbstractAccountRequest
 {
-
     public function getUrlRequest(): string
     {
         return 'revokeAccessToken';
@@ -31,5 +30,4 @@ class RevokeAccessTokenRequest extends AbstractAccountRequest
 
         return $this->account;
     }
-
 }

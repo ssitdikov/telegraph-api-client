@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -7,7 +7,6 @@ use SSitdikov\TelegraphAPI\Type\Account;
 
 class EditAccountInfoRequest extends AbstractAccountRequest
 {
-
     public function getUrlRequest(): string
     {
         return 'editAccountInfo';
@@ -35,9 +34,9 @@ class EditAccountInfoRequest extends AbstractAccountRequest
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return Account
+     * @param  ResponseInterface $response
      * @throws \Exception
+     * @return Account
      */
     public function handleResponse(ResponseInterface $response): Account
     {
@@ -50,5 +49,4 @@ class EditAccountInfoRequest extends AbstractAccountRequest
         $this->account->setShortName($json->result->short_name);
         return $this->account;
     }
-
 }

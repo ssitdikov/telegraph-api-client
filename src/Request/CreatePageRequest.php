@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -8,7 +8,6 @@ use SSitdikov\TelegraphAPI\Type\Page;
 
 class CreatePageRequest extends AbstractPageRequest
 {
-
     public function getUrlRequest(): string
     {
         return 'createPage';
@@ -34,10 +33,10 @@ class CreatePageRequest extends AbstractPageRequest
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return \SSitdikov\TelegraphAPI\Type\Page
+     * @param  ResponseInterface                 $response
      * @throws ContentTextRequired
      * @throws \Exception
+     * @return \SSitdikov\TelegraphAPI\Type\Page
      */
     public function handleResponse(ResponseInterface $response): Page
     {
@@ -63,5 +62,4 @@ class CreatePageRequest extends AbstractPageRequest
         }
         return $this->page;
     }
-
 }

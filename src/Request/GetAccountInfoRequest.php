@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -7,7 +7,6 @@ use SSitdikov\TelegraphAPI\Type\Account;
 
 class GetAccountInfoRequest extends AbstractAccountRequest
 {
-
     private $fields = ['short_name', 'author_name', 'author_url', 'auth_url', 'page_count'];
 
     public function setAccountFields($fields)
@@ -31,9 +30,9 @@ class GetAccountInfoRequest extends AbstractAccountRequest
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return Account
+     * @param  ResponseInterface $response
      * @throws \Exception
+     * @return Account
      */
     public function handleResponse(ResponseInterface $response): Account
     {
@@ -60,5 +59,4 @@ class GetAccountInfoRequest extends AbstractAccountRequest
         $account->setAccessToken($this->account->getAccessToken());
         return $account;
     }
-
 }

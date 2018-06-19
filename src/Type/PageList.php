@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Type;
 
 class PageList
 {
-
     private $totalCount = 0;
     /**
      * @var Page[]

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -6,7 +6,6 @@ use Psr\Http\Message\ResponseInterface;
 
 interface RequestInterface
 {
-
     const POST = 'post';
     const GET = 'get';
 
@@ -17,5 +16,4 @@ interface RequestInterface
     public function getParams(): array;
 
     public function handleResponse(ResponseInterface $response);
-
 }

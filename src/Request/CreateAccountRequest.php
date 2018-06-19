@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -8,7 +8,6 @@ use SSitdikov\TelegraphAPI\Type\Account;
 
 class CreateAccountRequest extends AbstractAccountRequest
 {
-
     public function getUrlRequest(): string
     {
         return 'createAccount';
@@ -30,10 +29,10 @@ class CreateAccountRequest extends AbstractAccountRequest
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return Account
+     * @param  ResponseInterface          $response
      * @throws ShortNameRequiredException
      * @throws \Exception
+     * @return Account
      */
     public function handleResponse(ResponseInterface $response): Account
     {
@@ -52,6 +51,4 @@ class CreateAccountRequest extends AbstractAccountRequest
         $this->account->setAccessToken($json->result->access_token);
         return $this->account;
     }
-
-
 }

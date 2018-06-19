@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -8,7 +8,6 @@ use SSitdikov\TelegraphAPI\Type\PageList;
 
 class GetPageListRequest implements RequestInterface
 {
-
     private $account;
 
     private $offset;
@@ -17,8 +16,8 @@ class GetPageListRequest implements RequestInterface
     /**
      * GetPageListRequest constructor.
      * @param Account $account
-     * @param int $offset
-     * @param int $limit
+     * @param int     $offset
+     * @param int     $limit
      * @todo add additional checks for limits
      */
     public function __construct(Account $account, $offset = 0, $limit = 50)
@@ -52,9 +51,9 @@ class GetPageListRequest implements RequestInterface
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return PageList
+     * @param  ResponseInterface $response
      * @throws \Exception
+     * @return PageList
      */
     public function handleResponse(ResponseInterface $response): PageList
     {
@@ -67,5 +66,4 @@ class GetPageListRequest implements RequestInterface
         $pageList->setPages($json->result->pages);
         return $pageList;
     }
-
 }

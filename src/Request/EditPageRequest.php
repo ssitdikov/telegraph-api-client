@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -9,7 +9,7 @@ class EditPageRequest extends AbstractPageRequest
 {
     public function getUrlRequest(): string
     {
-        return 'editPage/' . $this->page->getPath();
+        return 'editPage/'.$this->page->getPath();
     }
 
     public function getParams(): array
@@ -53,5 +53,4 @@ class EditPageRequest extends AbstractPageRequest
         }
         return $this->page;
     }
-
 }

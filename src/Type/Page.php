@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Type;
 
@@ -128,9 +128,9 @@ class Page
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getContent()
+    public function getContent(): array
     {
         return $this->content;
     }
@@ -174,6 +174,4 @@ class Page
     {
         $this->canEdit = $canEdit;
     }
-
-
 }

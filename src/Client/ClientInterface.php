@@ -16,6 +16,11 @@ use SSitdikov\TelegraphAPI\Type\Page;
 use SSitdikov\TelegraphAPI\Type\PageList;
 use SSitdikov\TelegraphAPI\Type\PageViews;
 
+/**
+ * Interface ClientInterface
+ *
+ * @author Salavat Sitdikov <sitsalavat@gmail.com>
+ */
 interface ClientInterface
 {
     public function createAccount(CreateAccountRequest $request): Account;

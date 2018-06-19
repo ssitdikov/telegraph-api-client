@@ -1,6 +1,8 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
- * User: Salavat Sitdikov
+ * User: Salavat Sitdikov.
  */
 
 namespace SSitdikov\TelegraphAPI\Tests\Page;
@@ -37,8 +39,8 @@ class CreatePageRequestTest extends TestCase
         $expectedParams = [
             'json' => [
                 'access_token' => $accessToken,
-                'title' => $title,
-                'content' => $content,
+                'title'        => $title,
+                'content'      => $content,
             ],
         ];
         $this->assertEquals($expectedParams, $request->getParams());
@@ -53,11 +55,11 @@ class CreatePageRequestTest extends TestCase
         $request->isReturnContent();
         $expectedParams = [
             'json' => [
-                'access_token' => $accessToken,
-                'title' => $title,
-                'content' => $content,
-                'author_name' => $authorName,
-                'author_url' => $authorUrl,
+                'access_token'   => $accessToken,
+                'title'          => $title,
+                'content'        => $content,
+                'author_name'    => $authorName,
+                'author_url'     => $authorUrl,
                 'return_content' => true,
             ],
         ];

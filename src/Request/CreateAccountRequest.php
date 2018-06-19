@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -29,9 +31,11 @@ class CreateAccountRequest extends AbstractAccountRequest
     }
 
     /**
-     * @param  ResponseInterface          $response
+     * @param ResponseInterface $response
+     *
      * @throws ShortNameRequiredException
      * @throws \Exception
+     *
      * @return Account
      */
     public function handleResponse(ResponseInterface $response): Account
@@ -39,9 +43,10 @@ class CreateAccountRequest extends AbstractAccountRequest
         $json = json_decode($response->getBody()->getContents());
         if ($json->ok === false && isset($json->error)) {
             switch ($json->error) {
-                case ('SHORT_NAME_REQUIRED'):
+                case 'SHORT_NAME_REQUIRED':
                     throw new ShortNameRequiredException();
             }
+
             throw new \Exception($json->error);
         }
         $this->account->setShortName($json->result->short_name);
@@ -49,6 +54,7 @@ class CreateAccountRequest extends AbstractAccountRequest
         $this->account->setAuthorUrl($json->result->author_url);
         $this->account->setAuthUrl($json->result->auth_url);
         $this->account->setAccessToken($json->result->access_token);
+
         return $this->account;
     }
 }

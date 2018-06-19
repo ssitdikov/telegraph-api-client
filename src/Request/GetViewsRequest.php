@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -40,6 +42,7 @@ class GetViewsRequest implements RequestInterface
             $params['month'] = $this->viewsRequest->getMonth();
             $params['year'] = $this->viewsRequest->getYear();
         }
+
         return ['json' => $params];
     }
 

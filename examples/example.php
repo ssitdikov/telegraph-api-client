@@ -1,20 +1,18 @@
 <?php
 
 use SSitdikov\TelegraphAPI\Client\TelegraphClient;
-use SSitdikov\TelegraphAPI\Request\{
-    CreateAccountRequest, EditAccountInfoRequest
-};
+use SSitdikov\TelegraphAPI\Request\CreateAccountRequest;
+use SSitdikov\TelegraphAPI\Request\EditAccountInfoRequest;
 use SSitdikov\TelegraphAPI\Request\{
     CreatePageRequest
 };
-use SSitdikov\TelegraphAPI\Type\{
-    Account, Page
-};
-use SSitdikov\TelegraphAPI\Type\ContentType\{
-    ImageType, LinkType, ParagraphType
-};
+use SSitdikov\TelegraphAPI\Type\Account;
+use SSitdikov\TelegraphAPI\Type\ContentType\ImageType;
+use SSitdikov\TelegraphAPI\Type\ContentType\LinkType;
+use SSitdikov\TelegraphAPI\Type\ContentType\ParagraphType;
+use SSitdikov\TelegraphAPI\Type\Page;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.telegra.ph/']);
 
@@ -22,6 +20,7 @@ $telegraph = new TelegraphClient($client);
 
 $account = new Account();
 $account->setShortName('Test.Account');
+
 try {
     $account = $telegraph->createAccount(
         new CreateAccountRequest($account)

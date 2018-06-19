@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -16,8 +18,8 @@ class EditPageRequest extends AbstractPageRequest
     {
         $params = [
             'access_token' => $this->account->getAccessToken(),
-            'title' => $this->page->getTitle(),
-            'content' => $this->page->getContent(),
+            'title'        => $this->page->getTitle(),
+            'content'      => $this->page->getContent(),
         ];
         if ($this->page->getAuthorName()) {
             $params['author_name'] = $this->page->getAuthorName();
@@ -28,6 +30,7 @@ class EditPageRequest extends AbstractPageRequest
         if ($this->returnContent) {
             $params['return_content'] = true;
         }
+
         return ['json' => $params];
     }
 
@@ -51,6 +54,7 @@ class EditPageRequest extends AbstractPageRequest
         if ($this->getReturnContent()) {
             $this->page->setContent($json->result->content);
         }
+
         return $this->page;
     }
 }

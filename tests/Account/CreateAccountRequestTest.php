@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Tests\Account;
 
@@ -27,9 +29,9 @@ class CreateAccountRequestTest extends TestCase
         $this->assertEquals('createAccount', $request->getUrlRequest());
         $expectedParams = [
             'json' => [
-                'short_name' => $shortName,
+                'short_name'  => $shortName,
                 'author_name' => $authorName,
-                'author_url' => $authorUrl,
+                'author_url'  => $authorUrl,
             ],
         ];
         $this->assertEquals($expectedParams, $request->getParams());

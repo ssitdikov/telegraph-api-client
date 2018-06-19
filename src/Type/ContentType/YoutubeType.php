@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Type\ContentType;
 
@@ -9,7 +11,7 @@ class YoutubeType extends AbstractNodeElementType
     public function setSrc($src)
     {
         $element = [
-            'tag' => 'iframe',
+            'tag'   => 'iframe',
             'attrs' => [
                 'src' => '/embed/youtube?url='.rawurlencode($src),
             ],
@@ -20,7 +22,7 @@ class YoutubeType extends AbstractNodeElementType
     public function setCaption($caption)
     {
         $this->children[] = [
-            'tag' => 'figcaption',
+            'tag'      => 'figcaption',
             'children' => [
                 $caption,
             ],

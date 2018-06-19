@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -17,8 +19,8 @@ class CreatePageRequest extends AbstractPageRequest
     {
         $params = [
             'access_token' => $this->account->getAccessToken(),
-            'title' => $this->page->getTitle(),
-            'content' => $this->page->getContent(),
+            'title'        => $this->page->getTitle(),
+            'content'      => $this->page->getContent(),
         ];
         if ($this->page->getAuthorName()) {
             $params['author_name'] = $this->page->getAuthorName();
@@ -29,13 +31,16 @@ class CreatePageRequest extends AbstractPageRequest
         if ($this->returnContent) {
             $params['return_content'] = true;
         }
+
         return ['json' => $params];
     }
 
     /**
-     * @param  ResponseInterface                 $response
+     * @param ResponseInterface $response
+     *
      * @throws ContentTextRequired
      * @throws \Exception
+     *
      * @return \SSitdikov\TelegraphAPI\Type\Page
      */
     public function handleResponse(ResponseInterface $response): Page
@@ -43,7 +48,7 @@ class CreatePageRequest extends AbstractPageRequest
         $json = json_decode($response->getBody()->getContents());
         if ($json->ok === false && isset($json->error)) {
             switch ($json->error) {
-                case ('CONTENT_TEXT_REQUIRED'):
+                case 'CONTENT_TEXT_REQUIRED':
                     throw new ContentTextRequired();
                 default:
                     throw new \Exception($json->error);
@@ -60,6 +65,7 @@ class CreatePageRequest extends AbstractPageRequest
         if ($this->getReturnContent()) {
             $this->page->setContent($json->result->content);
         }
+
         return $this->page;
     }
 }

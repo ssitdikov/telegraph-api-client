@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Type\ContentType;
 
@@ -19,6 +21,7 @@ class AbstractNodeElementType implements NodeElementTypeInterface
         if (!empty($this->children)) {
             $result['children'] = $this->children;
         }
+
         return $result;
     }
 }

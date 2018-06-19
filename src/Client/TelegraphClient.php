@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Client;
 
@@ -42,6 +44,7 @@ class TelegraphClient extends AbstractClient
             $request->getUrlRequest(),
             $request->getParams()
         );
+
         return $request->handleResponse($response);
     }
 

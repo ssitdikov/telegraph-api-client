@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Tests\Page;
 
@@ -21,8 +23,8 @@ class ContentTypesTest extends TestCase
         $link->setHref('https://github.com');
 
         $this->assertJson(json_encode([
-            'tag' => 'a',
-            'attrs' => ['href' => 'https://github.com'],
+            'tag'      => 'a',
+            'attrs'    => ['href' => 'https://github.com'],
             'children' => ['Test link'],
         ]), json_encode($link));
     }
@@ -36,13 +38,11 @@ class ContentTypesTest extends TestCase
         $image->setSrc('https://github.com/logo.png');
 
         $this->assertJson(json_encode([
-            'tag' => 'img',
+            'tag'   => 'img',
             'attrs' => [
                 'src' => 'https://github.com/logo.png',
             ],
         ]), json_encode($image));
-
-
     }
 
     /**
@@ -55,7 +55,7 @@ class ContentTypesTest extends TestCase
 
         $this->assertJson(
             json_encode([
-                'tag' => 'p',
+                'tag'      => 'p',
                 'children' => [
                     'Test',
                 ],
@@ -69,11 +69,11 @@ class ContentTypesTest extends TestCase
 
         $this->assertJson(
             json_encode([
-                'tag' => 'p',
+                'tag'      => 'p',
                 'children' => [
                     'Test',
                     [
-                        'tag' => 'p',
+                        'tag'      => 'p',
                         'children' => [
                             'Test',
                         ],
@@ -95,16 +95,16 @@ class ContentTypesTest extends TestCase
 
         $this->assertJson(
             json_encode([
-                'tag' => 'figure',
+                'tag'      => 'figure',
                 'children' => [
                     [
-                        'tag' => 'iframe',
+                        'tag'   => 'iframe',
                         'attrs' => [
                             'src' => 'test',
                         ],
                     ],
                     [
-                        'tag' => 'figcaption',
+                        'tag'      => 'figcaption',
                         'children' => [
                             'Caption',
                         ],

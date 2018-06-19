@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Request;
 
@@ -15,6 +17,7 @@ class RevokeAccessTokenRequest extends AbstractAccountRequest
     public function getParams(): array
     {
         $response = ['access_token' => $this->account->getAccessToken()];
+
         return ['json' => $response];
     }
 

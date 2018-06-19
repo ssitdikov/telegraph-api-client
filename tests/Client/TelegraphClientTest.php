@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Tests\Client;
 
@@ -62,12 +64,12 @@ class TelegraphClientTest extends TestCase
         $authUrl = md5(random_bytes(16));
 
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'short_name' => $this->account->getShortName(),
-                'author_name' => '',
-                'author_url' => '',
-                'auth_url' => $authUrl,
+                'short_name'   => $this->account->getShortName(),
+                'author_name'  => '',
+                'author_url'   => '',
+                'auth_url'     => $authUrl,
                 'access_token' => $accessToken,
             ],
         ];
@@ -97,7 +99,7 @@ class TelegraphClientTest extends TestCase
     public function createAccountError()
     {
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => 'SomeStringError',
         ];
         $telegraph = $this->getTelegraph($responseContent);
@@ -115,7 +117,7 @@ class TelegraphClientTest extends TestCase
     public function createAccountErrorNotRequiredFields()
     {
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => 'SHORT_NAME_REQUIRED',
         ];
 
@@ -136,14 +138,14 @@ class TelegraphClientTest extends TestCase
         $accessToken = md5($authUrl.random_bytes(16));
         $pageCount = random_int(100, 9999);
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'short_name' => $this->account->getShortName(),
-                'author_name' => '',
-                'author_url' => '',
-                'auth_url' => $authUrl,
+                'short_name'   => $this->account->getShortName(),
+                'author_name'  => '',
+                'author_url'   => '',
+                'auth_url'     => $authUrl,
                 'access_token' => $accessToken,
-                'page_count' => $pageCount,
+                'page_count'   => $pageCount,
             ],
         ];
 
@@ -164,7 +166,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -191,14 +193,14 @@ class TelegraphClientTest extends TestCase
         $this->account->setAuthorName($authorName);
         $this->account->setAuthorUrl($authorUrl);
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'short_name' => $this->account->getShortName(),
-                'author_name' => $authorName,
-                'author_url' => $authorUrl,
-                'auth_url' => $authUrl,
+                'short_name'   => $this->account->getShortName(),
+                'author_name'  => $authorName,
+                'author_url'   => $authorUrl,
+                'auth_url'     => $authUrl,
                 'access_token' => $accessToken,
-                'page_count' => $pageCount,
+                'page_count'   => $pageCount,
             ],
         ];
 
@@ -221,7 +223,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -243,10 +245,10 @@ class TelegraphClientTest extends TestCase
         $authUrl = md5(random_bytes(16));
         $this->account->setAccessToken($accessToken);
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
                 'access_token' => $newAccessToken,
-                'auth_url' => $authUrl,
+                'auth_url'     => $authUrl,
             ],
         ];
 
@@ -268,7 +270,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -292,14 +294,14 @@ class TelegraphClientTest extends TestCase
         $views = random_int(1, 999);
         $canEdit = rand(0, 1) === 1 ? true : false;
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'title' => $title,
-                'path' => $path,
-                'url' => $url,
+                'title'       => $title,
+                'path'        => $path,
+                'url'         => $url,
                 'description' => $description,
-                'views' => $views,
-                'can_edit' => $canEdit,
+                'views'       => $views,
+                'can_edit'    => $canEdit,
             ],
         ];
 
@@ -349,16 +351,16 @@ class TelegraphClientTest extends TestCase
             ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']],
         ];
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'title' => $title,
-                'path' => $path,
-                'url' => $url,
+                'title'       => $title,
+                'path'        => $path,
+                'url'         => $url,
                 'description' => $description,
-                'views' => $views,
-                'can_edit' => $canEdit,
-                'content' => $content,
-                'image_url' => $imageUrl,
+                'views'       => $views,
+                'can_edit'    => $canEdit,
+                'content'     => $content,
+                'image_url'   => $imageUrl,
             ],
         ];
 
@@ -382,7 +384,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = 'CONTENT_TEXT_REQUIRED';
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -402,7 +404,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -427,15 +429,15 @@ class TelegraphClientTest extends TestCase
         $canEdit = rand(0, 1) === 1 ? true : false;
         $imageUrl = md5(random_bytes(16));
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'title' => $title,
-                'path' => $path,
-                'url' => $url,
+                'title'       => $title,
+                'path'        => $path,
+                'url'         => $url,
                 'description' => $description,
-                'views' => $views,
-                'can_edit' => $canEdit,
-                'image_url' => $imageUrl,
+                'views'       => $views,
+                'can_edit'    => $canEdit,
+                'image_url'   => $imageUrl,
             ],
         ];
 
@@ -486,16 +488,16 @@ class TelegraphClientTest extends TestCase
             ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']],
         ];
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'title' => $title,
-                'path' => $path,
-                'url' => $url,
+                'title'       => $title,
+                'path'        => $path,
+                'url'         => $url,
                 'description' => $description,
-                'views' => $views,
-                'can_edit' => $canEdit,
-                'content' => $content,
-                'image_url' => $imageUrl,
+                'views'       => $views,
+                'can_edit'    => $canEdit,
+                'content'     => $content,
+                'image_url'   => $imageUrl,
             ],
         ];
 
@@ -519,7 +521,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -544,15 +546,15 @@ class TelegraphClientTest extends TestCase
         $canEdit = rand(0, 1) === 1 ? true : false;
         $imageUrl = md5(random_bytes(16));
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'title' => $title,
-                'path' => $path,
-                'url' => $url,
+                'title'       => $title,
+                'path'        => $path,
+                'url'         => $url,
                 'description' => $description,
-                'views' => $views,
-                'can_edit' => $canEdit,
-                'image_url' => $imageUrl,
+                'views'       => $views,
+                'can_edit'    => $canEdit,
+                'image_url'   => $imageUrl,
             ],
         ];
 
@@ -603,16 +605,16 @@ class TelegraphClientTest extends TestCase
             ['tag' => 'a', 'attrs' => ['href' => 'link'], 'children' => ['text']],
         ];
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-                'title' => $title,
-                'path' => $path,
-                'url' => $url,
+                'title'       => $title,
+                'path'        => $path,
+                'url'         => $url,
                 'description' => $description,
-                'views' => $views,
-                'can_edit' => $canEdit,
-                'content' => $content,
-                'image_url' => $imageUrl,
+                'views'       => $views,
+                'can_edit'    => $canEdit,
+                'content'     => $content,
+                'image_url'   => $imageUrl,
             ],
         ];
 
@@ -639,7 +641,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -658,9 +660,9 @@ class TelegraphClientTest extends TestCase
     {
         $totalCount = random_int(1, 999);
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
-            'pages' => [],
+            'pages'       => [],
             'total_count' => $totalCount,
                 ],
         ];
@@ -676,13 +678,13 @@ class TelegraphClientTest extends TestCase
         $this->assertEquals([
             'json' => [
                 'access_token' => $this->account->getAccessToken(),
-                'limit' => $limit,
-                'offset' => $offset,
+                'limit'        => $limit,
+                'offset'       => $offset,
             ],
         ], $request->getParams());
 
         $this->assertEquals($totalCount, $pageList->getTotalCount());
-        /**
+        /*
          * @todo Check pages result
          */
         $this->assertEquals([], $pageList->getPages());
@@ -691,8 +693,8 @@ class TelegraphClientTest extends TestCase
         $this->assertEquals([
             'json' => [
                 'access_token' => $this->account->getAccessToken(),
-                'limit' => 50,
-                'offset' => 0,
+                'limit'        => 50,
+                'offset'       => 0,
             ],
         ], $request->getParams());
     }
@@ -704,7 +706,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 
@@ -723,7 +725,7 @@ class TelegraphClientTest extends TestCase
     {
         $views = random_int(1, 99);
         $responseContent = [
-            'ok' => true,
+            'ok'     => true,
             'result' => [
                 'views' => $views,
             ],
@@ -746,10 +748,10 @@ class TelegraphClientTest extends TestCase
         $request = new GetViewsRequest($requestObject);
         $this->assertEquals([
             'json' => [
-                'year' => $year,
+                'year'  => $year,
                 'month' => $month,
-                'day' => $day,
-                'hour' => $hour,
+                'day'   => $day,
+                'hour'  => $hour,
             ],
         ], $request->getParams());
 
@@ -764,7 +766,7 @@ class TelegraphClientTest extends TestCase
     {
         $errorString = md5(random_bytes(16));
         $responseContent = [
-            'ok' => false,
+            'ok'    => false,
             'error' => $errorString,
         ];
 

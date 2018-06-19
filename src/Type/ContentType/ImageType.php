@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SSitdikov\TelegraphAPI\Type\ContentType;
 
@@ -7,14 +9,14 @@ class ImageType extends AbstractNodeElementType
     protected $tag = 'img';
 
     /**
-     * Caption text
+     * Caption text.
      *
      * @var string Caption
      */
     private $caption = '';
 
     /**
-     * Set image source
+     * Set image source.
      *
      * @param string $src Image source path
      */
@@ -24,7 +26,7 @@ class ImageType extends AbstractNodeElementType
     }
 
     /**
-     * Set image caption
+     * Set image caption.
      *
      * @param string $caption Image caption
      */
@@ -38,14 +40,14 @@ class ImageType extends AbstractNodeElementType
         $this->tag = 'figure';
 
         $image = [
-            'tag' => 'img',
+            'tag'   => 'img',
             'attrs' => [
                 'src' => $this->attrs['src'],
             ],
         ];
 
         $imageDiv = [
-            'tag' => 'div',
+            'tag'   => 'div',
             'attrs' => [
                 'class' => 'figure_wrapper',
             ],
@@ -57,12 +59,12 @@ class ImageType extends AbstractNodeElementType
         $this->attrs = [];
 
         $children = [
-            $imageDiv
+            $imageDiv,
         ];
 
         if ($this->caption) {
             $captionElement = [
-                'tag' => 'figcaption',
+                'tag'      => 'figcaption',
                 'children' => [
                     $this->caption,
                 ],
@@ -74,6 +76,4 @@ class ImageType extends AbstractNodeElementType
 
         return parent::jsonSerialize();
     }
-
-
 }
